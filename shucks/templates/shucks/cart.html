@@ -1,0 +1,53 @@
+{% extends 'shucks/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card mt-4 mb-3" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                    <div class="card-header">
+                        <a href="{% url 'products' %}" class="btn btn-outline-secondary">Continue shopping</a>
+                    </div>
+                    <div class="card-body">
+                            <p class="card-text text-muted" style="font-size: small; letter-spacing: 2px; text-transform: uppercase;">
+                                items: <span style="color: black; font-weight: bold">{{order.get_cart_items}}</span></p>
+                            <p class="card-text text-muted" style="font-size: small; letter-spacing: 2px; text-transform: uppercase;">
+                                total price: <span style="color: black; font-weight: bold">Ksh {{order.get_cart_total}}</span></p>
+                                
+                        <a href="{% url 'checkout' %}" class="btn btn-outline-success float-right">Proceed to checkout</a>   
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <table class="table table-stripped table-md mt-2" style="text-decoration: none; color: black;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{item.product.name}}</td>
+                        <td> {{item.product.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>Ksh {{item.get_total}}</td>
+                    </tr>
+                    {% endfor %} 
+                </tbody>
+
+                </table>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock content %}

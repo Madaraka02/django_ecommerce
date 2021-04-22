@@ -1,0 +1,63 @@
+
+{% load static %}
+        <!-- filters -->
+        <script type="text/javascript" src="{% static 'product-filter.js' %}"></script>
+        <div class="card mb-4 card-sm" style="text-decoration: none; text-transform:uppercase; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+            <div class="card-header">Categories</div>
+            <div class="card-body">
+                <div class="list-group list-group-flush ">
+                {% for cat in cats  %}
+                    <li class="list-group-item">
+                        <input value="{{ category__id }}" class="filter-checkbox" data-filter="category" type="checkbox"/>&nbsp;
+                        {{cat.category__title}}
+                    </li>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+                <!-- filters -->
+        <div class="card mb-4 card-sm" style="text-decoration: none; text-transform:uppercase; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+        <div class="card-header">Brands</div>
+            <div class="card-body">
+                <div class="list-group list-group-flush ">
+                {% for brand in brands  %}
+                    <li class="list-group-item">
+                        <input value="{{ brand__id }}" class="filter-checkbox" data-filter="brand" type="checkbox"/>&nbsp;
+                        {{brand.brand__title}}
+                    </li>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+                <div class="card mb-4 card-sm" style="text-decoration: none; text-transform:uppercase; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <div class="card-header">Sizes</div>
+            <div class="card-body">
+                <div class="list-group list-group-flush ">
+                {% for size in sizes  %}
+                    <li class="list-group-item">
+                        <input value="{{ size__id }}" class="filter-checkbox" data-filter="size" type="checkbox"/>&nbsp;
+                        {{size.size__title}}
+                    </li>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+                <div class="card mb-4 card-sm" style="text-decoration: none; text-transform:uppercase; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <div class="card-header">Colors</div>
+            <div class="card-body">
+                <div class="list-group list-group-flush ">
+                {% for color in colors  %}
+                    <li class="list-group-item">
+                        <input value="{{ color__id }}" class="filter-checkbox" data-filter="color" type="checkbox"/>&nbsp;
+                        <button class="btn" style="background-color:{{color.color__color_code}}; margin-top:-5px;"></button>
+                    </li>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>

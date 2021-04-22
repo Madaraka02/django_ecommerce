@@ -1,0 +1,90 @@
+{% extends 'shucks/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <img class="card-img-top mt-3 mb-3"
+                src="/media/{{data.productattribute_set.first.image}}" height="330"  alt="{{data.title}}" 
+                style="object-fit: contain; margin: 5px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-radius: 8px;">
+            </div>
+            <div class="col-md-7">
+                <div class="card mt-3 mb-4" style="text-decoration: none; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                    <div class="card-body text-center">
+                    <p class="card-text">{{data.description}}</p>
+                    </div>
+                </div>
+    <table class="table table-bordered table-md mt-2" style="text-decoration: none; color: black;
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+      <thead>
+        <tr>
+            <th>price</th>
+            <th>ksh 1500</th>
+        </tr>
+        <tr>
+            <th>colors</th>
+            <td>
+                {% for p_attr in data.productattribute_set.all %}
+                    <button class="btn btn-lg" style="background-color:{{p_attr.color.color_code}}"></button> 
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Sizes</th>
+            <td>
+                {% for p_attr in data.productattribute_set.all %}
+                    <button class="btn btn-md">{{p_attr.size.title}}</button> 
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    <a href="{% url 'cart' %}" class="btn btn-outline-warning btn-lg float-right">Add to cart</a>
+            </div>    
+        </div>
+    <div class="row">
+    
+    <div class="col-md-5">
+        <table class="table table-bordered table-lg mt-3" style="text-decoration: none; color: black;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+        <tr>
+            <th>Category</th>
+            <td>
+                <a href="#" style="text-decoration: none; color: black;">{{data.category.title}}</a>
+            </td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <td>
+                <a href="#" style="text-decoration: none; color: black;">{{data.brand.title}}</a>
+            </td>
+        </tr>
+
+    </table>
+    </div>
+    <div class="col-md-6">
+    </div>
+    <!-- relatesd products -->
+    <h4 class="text-muted text-uppercase" style="font-size: medium;">Related products</h4>
+    <hr>
+    <div class="row">
+    <div class="col-md-5 mt-2">
+        <div class="card-columns" style="display: flex;">
+            {% for product in related %}
+                <div class="card" style="text-decoration: none; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                    <img class="card-img-top" src="/media/{{product.productattribute_set.first.image}}" alt="{{product.title}}">
+                    <div class="card-body">
+                        <p class="card-text">{{product.name}}</p>
+                        <p class="card-text">{{product.price}}</p>
+                    </div>
+                </div>  
+            {% endfor %}
+        </div>    
+    </div>
+    <div class="col-md-6">
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}

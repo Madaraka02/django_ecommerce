@@ -1,0 +1,26 @@
+{% extends 'shucks/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- <h4 class="text-muted text-center" style="text-transform: uppercase; font-size: small;">ALL products</h4> -->
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mt-5" 
+            style="display: flex; flex-direction: row; flex-wrap: wrap;justify-content: space-between; align-items: center;">
+                {% for product in data %}
+                    <div class="cardmt-4 mb-3" style="width: 14rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-radius: 8px;">
+                        <img src="/media/{{product.productattribute_set.first.image}}" alt="{{product.title}}"
+                        width=100% height="200" style="object-fit: contain;">
+                        <div class="card-body">
+                            <p class="card-text">{{ product.name}}</p>
+                            <h4 class="card-text">Price: {{ product.price}}Ksh</h4>
+                            <a href="/product/{{product.slug}}/{{product.id}}" class="btn btn-outline-primary">Details</a>
+                            <button data-product={{product.id}} data-action="add" class="btn btn-warning update-cart">Add to cart</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+{% endblock content %}

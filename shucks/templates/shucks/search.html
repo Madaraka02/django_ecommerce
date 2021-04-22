@@ -1,0 +1,34 @@
+{% extends 'shucks/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    <h4><span class="text-muted">Search results for</span> {{request.GET.q}}</h4>
+    </div>
+    <hr>
+    <div class="row"> 
+    <div class="card-columns">  
+        {% for product in data %}
+            <div class="card" style="text-decoration: none; color: black;
+                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                 <a href="/product/{{product.slug}}/{{product.id}}">
+                 <img class="card-img-top" src="/media/{{product.productattribute_set.first.image}}" alt="{{product.title}}"
+                  width=100% height="200" style="object-fit: contain"></a>
+                <div class="card-body">
+                <p class="card-text">{{product.name}}</p>
+                <p class="card-text">{{product.price}}</p>
+                </div>
+            </div> 
+        {% endfor %}
+    </div> 
+    </div> 
+     <div class="row">
+    <div class="col-md-8">
+    <p class="my-4 text-center"><a href="{% url 'products' %}" class="btn btn-dark btn-small">All Products
+    <i class="fa fa-long-arrow-alt-right"></i></a></p>
+    </div>
+    </div>
+</div>
+
+{% endblock content %}

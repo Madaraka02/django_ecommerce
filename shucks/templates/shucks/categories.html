@@ -1,0 +1,24 @@
+{% extends 'shucks/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h4>Categories</h4>
+    <div class="row">
+        <div class="card-columns">
+            {% for category in data %}
+                <a href="/category-products/{{category.id}}" style="text-decoration: none; text-color: black">
+                    <div class="card" style="text-decoration: none; text-transform:uppercase; color: black;
+                        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                        <img src="/media/{{category.image}}" alt="{{category.title}}" width=100% height="200" style="object-fit: contain">
+                        <div class="card-body">
+                            <p class="card-text">{{category.title}}</p>
+                        </div>
+                    </div>
+                </a>  
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
